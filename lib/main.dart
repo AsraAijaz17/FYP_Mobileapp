@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:theiotlab/LoginScreen/login.dart';
 import 'package:theiotlab/SplashScreen/splash_screen.dart';
+import 'package:theiotlab/signup_screen.dart/signup_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: LoginScreen(),
+      debugShowCheckedModeBanner: false,
+      home: SignupScreen(),
     );
   }
 }

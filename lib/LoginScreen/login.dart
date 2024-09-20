@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:theiotlab/signup_screen.dart/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -196,8 +197,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Icon(Icons.email),
                 ),
               ],
-            )
+            ),
             //---------------------------------------------------
+            SizedBox(
+              height: 30,
+            ),
+            TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignupScreen()));
+                },
+                child: Text("Don’t have an account? Register Now"))
           ],
         ),
       )),

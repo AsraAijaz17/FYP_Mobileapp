@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:theiotlab/HomePage/CustomWidgets/bottomnav.dart';
 import 'package:theiotlab/LoginScreen/login.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -221,7 +222,7 @@ class _SignupScreenState extends State<SignupScreen> {
             TextButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
                 },
                 child: Text("Don’t have an account? Login Now"))
 

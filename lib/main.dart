@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:theiotlab/HomePage/CustomWidgets/bottomnav.dart';
+import 'package:theiotlab/HomePage/CustomWidgets/header.dart';
+
 import 'package:theiotlab/LoginScreen/login.dart';
+import 'package:theiotlab/HomePage/homepage.dart';
 import 'package:theiotlab/SplashScreen/splash_screen.dart';
+
 import 'package:theiotlab/signup_screen.dart/signup_screen.dart';
 
 void main() {
@@ -13,9 +18,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignupScreen(),
+      home: SplashScreen(),
     );
   }
 }

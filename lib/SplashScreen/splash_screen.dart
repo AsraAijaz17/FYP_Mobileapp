@@ -4,14 +4,17 @@ import 'package:theiotlab/LoginScreen/login.dart';
 import '../signup_screen.dart/signup_screen.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+  final String username; // Add username parameter
+
+  
+  const SplashScreen({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => LoginScreen(username: username,)),
       );
     });
     return Scaffold(

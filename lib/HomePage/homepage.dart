@@ -6,12 +6,13 @@ import 'package:theiotlab/HomePage/CustomWidgets/optionsBoxes.dart';
 import 'package:theiotlab/HomePage/CustomWidgets/tempWidget.dart';
 
 import '../INCOMPLETE/DoorLockScreen/doorlock.dart';
-import '../INCOMPLETE/EnergyMonitoringScreen/EMS.dart';
+import '../EnergyMonitoringScreen/EMS.dart';
 import '../INCOMPLETE/ProjectorScreen/projector.dart';
 import '../INCOMPLETE/SmartAccessScreen/smartAccess.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  final String username;
+  const MyHomePage({super.key, required this.username});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -40,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
       "screen": ProjectorScreen(),
     },
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: SafeArea(
           child: Column(
             children: [
-              HomeHeader(),
+              HomeHeader(username: widget.username),
               TempretureWidget(),
               SizedBox(
                 height: 10,

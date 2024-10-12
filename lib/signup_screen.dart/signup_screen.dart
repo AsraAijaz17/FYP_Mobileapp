@@ -2,11 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:theiotlab/HomePage/CustomWidgets/bottomnav.dart';
+import 'package:theiotlab/HomePage/homepage.dart';
 import 'package:theiotlab/LoginScreen/login.dart';
-import 'package:theiotlab/signup_screen.dart/home.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+
+  final String username;
+  const SignupScreen({super.key, required this.username});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -54,7 +56,7 @@ class _SignupScreenState extends State<SignupScreen> {
         context,
         MaterialPageRoute(
             builder: (context) =>
-                HomeScreen()), // Ensure HomeScreen() is the right widget
+                MyHomePage(username: username)), // Ensure HomeScreen() is the right widget
       );
     } on FirebaseAuthException catch (e) {
       print(
@@ -290,7 +292,7 @@ class _SignupScreenState extends State<SignupScreen> {
             TextButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
+                      MaterialPageRoute(builder: (context) => LoginScreen(username: widget.username,)));
                 },
                 child: Text("already have an account? Login Now"))
 

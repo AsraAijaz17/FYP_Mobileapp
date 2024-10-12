@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
 class HomeHeader extends StatefulWidget {
-  const HomeHeader({super.key});
+  final String username; // Username ko define karein
+
+ 
+  const HomeHeader({super.key, required this.username});
 
   @override
   State<HomeHeader> createState() => _HomeHeaderState();
 }
 
 class _HomeHeaderState extends State<HomeHeader> {
+  
+
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,7 +56,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                     TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
               ),
               Text(
-                "Asra Aijaz",
+                widget.username,
                 style: TextStyle(
                     color: Color.fromARGB(255, 31, 5, 126),
                     fontWeight: FontWeight.bold),

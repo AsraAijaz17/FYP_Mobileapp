@@ -1,228 +1,15 @@
-// import 'package:flutter/material.dart';
-// import 'package:theiotlab/signup_screen.dart/signup_screen.dart';
-
-// class LoginScreen extends StatefulWidget {
-//   const LoginScreen({super.key});
-
-//   @override
-//   State<LoginScreen> createState() => _LoginScreenState();
-// }
-
-// class _LoginScreenState extends State<LoginScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SafeArea(
-//           child: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Container(
-//               height: 78,
-//               width: 280,
-//               child: const Column(
-//                 children: [
-//                   Text(
-//                     "Welcome back! Glad",
-//                     style: TextStyle(
-//                         fontSize: 30,
-//                         fontWeight: FontWeight.bold,
-//                         color: Color(0xFF1A52C5)),
-//                   ),
-//                   Text(
-//                     "to see you, Again",
-//                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-//                   ),
-//                 ],
-//               ),
-//             ),
-
-//             //-----------------------------------------------------
-
-//             const SizedBox(
-//               height: 30,
-//             ),
-
-//             //---------------------------------------------------
-
-//             Container(
-//               padding: EdgeInsets.only(left: 20),
-//               width: MediaQuery.of(context).size.width * 0.9,
-//               height: 56,
-//               decoration: BoxDecoration(
-//                   borderRadius: BorderRadius.circular(10),
-//                   border: Border.all(color: Colors.black, width: 1)),
-//               child: TextField(
-//                 decoration: InputDecoration(
-//                   hintText: "Enter your Email",
-//                   border: InputBorder.none,
-//                 ),
-//               ),
-//             ),
-
-//             //---------------------------------------------------
-
-//             const SizedBox(
-//               height: 10,
-//             ),
-
-//             //---------------------------------------------------
-
-//             Container(
-//               padding: EdgeInsets.only(left: 20),
-//               width: MediaQuery.of(context).size.width * 0.9,
-//               height: 56,
-//               decoration: BoxDecoration(
-//                   borderRadius: BorderRadius.circular(10),
-//                   border: Border.all(color: Colors.black, width: 1)),
-//               child: TextField(
-//                 decoration: InputDecoration(
-//                     border: InputBorder.none, hintText: "Enter your password"),
-//               ),
-//             ),
-
-//             //---------------------------------------------------
-
-//             const SizedBox(
-//               height: 10,
-//             ),
-
-//             //---------------------------------------------------
-
-//             const Row(
-//               children: [
-//                 Spacer(),
-//                 Padding(
-//                   padding: EdgeInsets.only(right: 15),
-//                   child: Text(
-//                     "Forget Password?",
-//                     style: TextStyle(
-//                         color: Colors.black, fontWeight: FontWeight.w500),
-//                   ),
-//                 ),
-//               ],
-//             ),
-
-//             //---------------------------------------------------
-
-//             const SizedBox(
-//               height: 30,
-//             ),
-
-//             //---------------------------------------------------
-
-//             Container(
-//               width: 331,
-//               height: 56,
-//               decoration: BoxDecoration(
-//                   borderRadius: BorderRadius.circular(10),
-//                   gradient: const LinearGradient(colors: [
-//                     Color(0xFF1F57CA),
-//                     Color(0xFF000000),
-//                   ], begin: Alignment.topLeft, end: Alignment.bottomLeft)),
-//               child: const Center(
-//                 child: Text(
-//                   "Login",
-//                   style: TextStyle(color: Colors.white),
-//                 ),
-//               ),
-//             ),
-
-//             //---------------------------------------------------
-
-//             const SizedBox(height: 20),
-
-//             //---------------------------------------------------
-
-//             const Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 SizedBox(
-//                   width: 100,
-//                   child: Divider(
-//                     color: Colors.grey,
-//                     thickness: 0.5,
-//                   ),
-//                 ),
-//                 Text("Or Login With"),
-//                 SizedBox(
-//                   height: 40,
-//                 ),
-//                 SizedBox(
-//                   width: 100,
-//                   child: Divider(
-//                     color: Colors.grey,
-//                     thickness: 0.5,
-//                   ),
-//                 )
-//               ],
-//             ),
-//             const SizedBox(
-//               height: 10,
-//             ),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 Container(
-//                   height: 56,
-//                   width: 105,
-//                   decoration: BoxDecoration(
-//                       border: Border.all(width: 1, color: Colors.grey),
-//                       color: Colors.white,
-//                       borderRadius: BorderRadius.circular(10)),
-//                   child: Icon(Icons.facebook),
-//                 ),
-//                 const SizedBox(
-//                   width: 5,
-//                 ),
-//                 Container(
-//                   height: 56,
-//                   width: 105,
-//                   decoration: BoxDecoration(
-//                       border: Border.all(width: 1, color: Colors.grey),
-//                       color: Colors.white,
-//                       borderRadius: BorderRadius.circular(10)),
-//                   child: Icon(Icons.apple),
-//                 ),
-//                 const SizedBox(
-//                   width: 5,
-//                 ),
-//                 Container(
-//                   height: 56,
-//                   width: 105,
-//                   decoration: BoxDecoration(
-//                       border: Border.all(width: 1, color: Colors.grey),
-//                       color: Colors.white,
-//                       borderRadius: BorderRadius.circular(10)),
-//                   child: Icon(Icons.email),
-//                 ),
-//               ],
-//             ),
-//             //---------------------------------------------------
-//             const SizedBox(
-//               height: 30,
-//             ),
-//             TextButton(
-//                 onPressed: () {
-//                   Navigator.push(context,
-//                       MaterialPageRoute(builder: (context) => SignupScreen()));
-//                 },
-//                 child: Text("Don’t have an account? Register Now"))
-//           ],
-//         ),
-//       )),
-//     );
-//   }
-// }
-
-// PURI FILE ME JAHAN BHI BLUE LINE AYE WAHAN "const" LAGADO
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:theiotlab/HomePage/CustomWidgets/bottomnav.dart';
 import 'package:theiotlab/signup_screen.dart/signup_screen.dart';
 
+import '../HomePage/homepage.dart';
+
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final String username; // Add username parameter
+
+  const LoginScreen({super.key, required this.username});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -231,14 +18,31 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  String username = '';
 
   loginUser() async {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
 
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      //fetching uid and storing its name into a var
+
+      final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+      DocumentSnapshot userDoc = await _firestore
+          .collection("UsersRegister")
+          .doc(credential.user!.uid)
+          .get();
+      setState(() {
+        username = userDoc['username'];
+      });
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              HomeScreen(username: username), // Pass username here
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -448,8 +252,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
             TextButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignupScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SignupScreen(
+                                username: '',
+                              )));
                 },
                 child: Text("Dont have an account? Register!")),
           ],

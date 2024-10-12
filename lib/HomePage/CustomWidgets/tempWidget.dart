@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class TempretureWidget extends StatefulWidget {
@@ -8,6 +9,20 @@ class TempretureWidget extends StatefulWidget {
 }
 
 class _TempretureWidgetState extends State<TempretureWidget> {
+  final DatabaseReference _database = FirebaseDatabase.instance.ref();
+
+  double temperature = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    _database.child("Temperature").onValue.listen((event) {
+      setState(() {
+        temperature = double.parse(event.snapshot.value.toString());
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +46,7 @@ class _TempretureWidgetState extends State<TempretureWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "32°C",
+                "$temperature",
                 style: TextStyle(fontSize: 35, color: Colors.white),
               ),
               Text("Lab Temperature",

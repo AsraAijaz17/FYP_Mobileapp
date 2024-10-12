@@ -20,6 +20,16 @@ class _HomeHeaderState extends State<HomeHeader> {
           CircleAvatar(
             radius: 25,
             backgroundColor: Colors.yellow,
+            child: ClipOval(
+              // This makes the image circular
+              child: Image.asset(
+                "assets/images/logo.jpg",
+                height: 50, // Adjust the height
+                width: 50, // Adjust the width
+                fit: BoxFit
+                    .cover, // Ensures the image covers the CircleAvatar space
+              ),
+            ),
           ),
 
           //---------------------------------------------------

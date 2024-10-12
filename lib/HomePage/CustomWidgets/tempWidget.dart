@@ -11,10 +11,10 @@ class _TempretureWidgetState extends State<TempretureWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 90,
-      width: MediaQuery.of(context).size.width * 0.9,
+      height: 110,
+      width: MediaQuery.of(context).size.width * 0.95,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
           gradient: const LinearGradient(colors: [
             Color(0xFF1F57CA),
             Color(0xFF000000),
@@ -32,7 +32,7 @@ class _TempretureWidgetState extends State<TempretureWidget> {
             children: [
               Text(
                 "32°C",
-                style: TextStyle(fontSize: 30, color: Colors.white),
+                style: TextStyle(fontSize: 35, color: Colors.white),
               ),
               Text("Lab Temperature",
                   style: TextStyle(fontSize: 15, color: Colors.white))

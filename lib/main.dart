@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:theiotlab/HomePage/CustomWidgets/bottomnav.dart';
 import 'package:theiotlab/HomePage/CustomWidgets/header.dart';
@@ -5,10 +6,14 @@ import 'package:theiotlab/HomePage/CustomWidgets/header.dart';
 import 'package:theiotlab/LoginScreen/login.dart';
 import 'package:theiotlab/HomePage/homepage.dart';
 import 'package:theiotlab/SplashScreen/splash_screen.dart';
+import 'package:theiotlab/firebase_options.dart';
+import 'package:theiotlab/signup_screen.dart/home.dart';
 
 import 'package:theiotlab/signup_screen.dart/signup_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 

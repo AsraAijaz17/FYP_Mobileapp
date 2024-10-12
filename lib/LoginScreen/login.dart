@@ -216,7 +216,9 @@
 // }
 
 // PURI FILE ME JAHAN BHI BLUE LINE AYE WAHAN "const" LAGADO
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:theiotlab/HomePage/CustomWidgets/bottomnav.dart';
 import 'package:theiotlab/signup_screen.dart/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -227,6 +229,25 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  loginUser() async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -264,6 +285,7 @@ class _LoginScreenState extends State<LoginScreen> {
             //---------------------------------------------------
 
             TextFormField(
+              controller: emailController,
               decoration: InputDecoration(
                 hintText: "Enter your Email",
                 border: OutlineInputBorder(
@@ -286,6 +308,7 @@ class _LoginScreenState extends State<LoginScreen> {
             //---------------------------------------------------
 
             TextFormField(
+              controller: passwordController,
               decoration: InputDecoration(
                 hintText: "Enter your password",
                 border: OutlineInputBorder(
@@ -344,8 +367,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: InkWell(
                 borderRadius: BorderRadius.circular(10),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignupScreen()));
+                  loginUser();
                 },
                 child: Container(
                   width: 331,
@@ -421,8 +443,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: const Icon(Icons.email),
                 ),
               ],
-            )
+            ),
             //---------------------------------------------------
+
+            TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignupScreen()));
+                },
+                child: Text("Dont have an account? Register!")),
           ],
         ),
       ),

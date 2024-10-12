@@ -17,7 +17,15 @@ class Options extends StatelessWidget {
         height: 161,
         width: 162,
         decoration: BoxDecoration(
-            border: Border.all(width: 2, color: Colors.black),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5), // Shadow color
+                spreadRadius: 5, // Spread radius (how far the shadow spreads)
+                blurRadius: 5, // Blur radius (how soft the shadow looks)
+                offset: Offset(0, 3), // Changes position of shadow (x, y)
+              ),
+            ],
+            border: Border.all(width: 1, color: Colors.black),
             borderRadius: BorderRadius.circular(20),
             color: Colors.white),
         child: Column(

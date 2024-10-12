@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:theiotlab/HomePage/CustomWidgets/bottomnav.dart';
 import 'package:theiotlab/LoginScreen/login.dart';
+import 'package:theiotlab/signup_screen.dart/home.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -10,6 +13,62 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  registerUser() async {
+    String username = usernameController.text;
+    String email = emailcontroller.text;
+    String password = passwordcontroller.text;
+    String confirmPassword = confirmPasswordController.text;
+
+    // Check if passwords match
+    if (password != confirmPassword) {
+      print("Passwords do not match!");
+      return; // Return early if passwords don't match
+    }
+
+    try {
+      // Creating user
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Adding user data to Firestore
+      FirebaseFirestore _firestore = FirebaseFirestore.instance;
+      await _firestore
+          .collection("UsersRegister")
+          .doc(credential.user!.uid)
+          .set({
+        'username': username,
+        'email': email,
+      });
+
+      print("User registered successfully, navigating to home...");
+
+      // Navigate to the Home page after successful registration
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                HomeScreen()), // Ensure HomeScreen() is the right widget
+      );
+    } on FirebaseAuthException catch (e) {
+      print(
+          "FirebaseAuthException: ${e.message}"); // Print specific error message
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print("Exception: $e"); // Print any other exception
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +112,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.black, width: 1)),
               child: TextField(
+                controller: usernameController,
                 decoration: InputDecoration(
                   hintText: "Username",
                   border: InputBorder.none,
@@ -76,6 +136,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.black, width: 1)),
               child: TextField(
+                controller: emailcontroller,
                 decoration: InputDecoration(
                     border: InputBorder.none, hintText: "Email"),
               ),
@@ -95,6 +156,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.black, width: 1)),
               child: TextField(
+                controller: passwordcontroller,
                 decoration: InputDecoration(
                     border: InputBorder.none, hintText: "Password"),
               ),
@@ -114,6 +176,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.black, width: 1)),
               child: TextField(
+                controller: confirmPasswordController,
                 decoration: InputDecoration(
                     border: InputBorder.none, hintText: "Confirm Password"),
               ),
@@ -129,19 +192,24 @@ class _SignupScreenState extends State<SignupScreen> {
 
             //---------------------------------------------------
 
-            Container(
-              width: 331,
-              height: 56,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(colors: [
-                    Color(0xFF1F57CA),
-                    Color(0xFF000000),
-                  ], begin: Alignment.topLeft, end: Alignment.bottomLeft)),
-              child: Center(
-                child: Text(
-                  "Register",
-                  style: TextStyle(color: Colors.white),
+            InkWell(
+              onTap: () {
+                registerUser();
+              },
+              child: Container(
+                width: 331,
+                height: 56,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(colors: [
+                      Color(0xFF1F57CA),
+                      Color(0xFF000000),
+                    ], begin: Alignment.topLeft, end: Alignment.bottomLeft)),
+                child: Center(
+                  child: Text(
+                    "Register",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ),
@@ -222,9 +290,9 @@ class _SignupScreenState extends State<SignupScreen> {
             TextButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
-                child: Text("Don’t have an account? Login Now"))
+                child: Text("already have an account? Login Now"))
 
             //---------------------------------------------------
           ],

@@ -53,6 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 10,
               ),
               HumidityWidget(),
+              SizedBox(
+                height: 10,
+              ),
               Expanded(
                   child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
